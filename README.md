@@ -37,8 +37,10 @@ complexify his philosophy… (I'm pretty sure, i now did complexify it :D) ^^
 * **nft_output_conf_content** : Template used to generate the previous output configuration file [default : `etc/nftables.d/filter-output.nft.j2`].
 * **nft_define_conf_path** : Vars definition file include in main configuration file [default : `{{ nft_conf_dir_path }}/defines.nft`].
 * **nft_define_conf_content** : Template used to generate the previous vars definition file [default : `etc/nftables.d/defines.nft.j2`].
-* **nft_sets_conf_path** : Sets and maps definition file include in main configuration file [default : `{{ nft_conf_dir_path }}/sets.nft`].
-* **nft_sets_conf_content** : Template used to generate the previous sets and maps definition file [default : `etc/nftables.d/sets.nft.j2`].
+* **nft_maps_conf_path** : Maps definition file include in main configuration file [default : `{{ nft_conf_dir_path }}/maps.nft`].
+* **nft_maps_conf_content** : Template used to generate the previous maps definition file [default : `etc/nftables.d/maps.nft.j2`].
+* **nft_sets_conf_path** : Sets definition file include in main configuration file [default : `{{ nft_conf_dir_path }}/sets.nft`].
+* **nft_sets_conf_content** : Template used to generate the previous sets definition file [default : `etc/nftables.d/sets.nft.j2`].
 * **nft_global_default_rules** : Set default rules for `global` chain. Other chains will jump to `global` before apply their specific rules.
 * **nft_global_rules** : You can add `global` rules or override those defined by **nft_global_default_rules** for all hosts.
 * **nft_global_group_rules** : You can add `global` rules or override those defined by **nft_global_default_rules** and **nft_global_rules** for a group.
@@ -210,7 +212,13 @@ nft_conntrack: {}
 nft_conntrack_group: {}
 nft_conntrack_host: {}
 
-# sets and maps
+# maps
+nft_map_default: {}
+nft_map: {}
+nft_map_group: {}
+nft_map_host: {}
+
+# sets
 nft_set_default:
   blackhole:
     - type ipv4_addr;
@@ -246,6 +254,7 @@ table inet filter {
 		ct state invalid drop
 	}
     include "/etc/nftables.d/conntrack.nft"
+	include "/etc/nftables.d/maps.nft"
 	include "/etc/nftables.d/sets.nft"
 	include "/etc/nftables.d/filter-input.nft"
 	include "/etc/nftables.d/filter-output.nft"

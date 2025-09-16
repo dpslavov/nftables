@@ -1,0 +1,20 @@
+#jinja2: lstrip_blocks: True, trim_blocks: True
+{{ ansible_managed | comment }}
+{% set mapmerged = nft_map_default.copy() %}
+{% set _ = mapmerged.update(nft_map) %}
+{% set _ = mapmerged.update(nft_map_group) %}
+{% if nft_merged_groups and hostvars[inventory_hostname]['nft_combined_rules'].nft_map_group is defined %}
+  {% set _ = mapmerged.update(hostvars[inventory_hostname]['nft_combined_rules'].nft_map_group) %}
+{% endif %}
+{% set _ = mapmerged.update(nft_map_host) %}
+
+{% for map, rules in mapmerged|dictsort  %}
+  {% if rules %}
+map {{ map }} {
+    {% for rule in rules %}
+	{{ rule }}
+    {% endfor %}
+}
+  {% endif %}
+
+{% endfor %}
