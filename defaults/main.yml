@@ -206,6 +206,50 @@ nft_define_conf_path: '{{ nft_conf_dir_path }}/defines.nft'
 nft_define_conf_content: 'etc/nftables.d/defines.nft.j2'
                                                                    # ]]]
                                                                    # ]]]
+# Nftables maps definition [[[
+# ----------------------------
+#
+# These "map" lists allow to define maps that can be used in Nftables rules.
+# See the official Nftables wiki page for more information and examples :
+# https://wiki.nftables.org/wiki-nftables/index.php/Maps
+
+# .. envvar:: nft_define_default [[[
+#
+# List of maps to configure for all hosts inherited from this role.
+nft_map_default: {} 
+                                                                   # ]]]
+# .. envvar:: nft_map [[[
+#
+# List of maps to configure for all hosts in the Ansible inventory.
+nft_map: {}
+                                                                   # ]]]
+# .. envvar:: nft_map_group [[[
+#
+# List of maps to configure for hosts in specific Ansible inventory group.
+nft_map_group: {}
+                                                                   # ]]]
+# .. envvar:: nft_map_host [[[
+#
+# List of maps to configure for specific hosts in the Ansible inventory.
+nft_map_host: {}
+                                                                   # ]]]
+# .. envvar:: nft_map_conf_path [[[
+#
+# Path to the "maps" file to include in the main configuration file
+# in order to use the previous defined lists.
+#
+# Should include the '{{ nft_conf_dir_path }}' var or be an absolut path.
+nft_map_conf_path: '{{ nft_conf_dir_path }}/maps.nft'
+                                                                   # ]]]
+# .. envvar:: nft_map_conf_content [[[
+#
+# Template used to provide the previous "maps" file.
+#
+# Must be a relative path from default/ directory of this role or from your
+# Ansible inventory directory.
+nft_map_conf_content: 'etc/nftables.d/maps.nft.j2'
+                                                                   # ]]]
+                                                                   # ]]]
 # Nftables sets definition [[[
 # ----------------------------
 #
