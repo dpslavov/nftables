@@ -81,6 +81,12 @@ complexify his philosophy… (I'm pretty sure, i now did complexify it :D) ^^
 * **nft__nat_host_postrouting_rules** : Set rules for `postrouting` chain of **nat** table for specific hosts the Ansible inventory.
 * **nft__nat_postrouting_conf_path** : postrouting configuration file include in the main configuration [default : `{{ nft_conf_dir_path }}/nat-postrouting.nft`].
 * **nft__nat_postrouting_conf_content** : Template used to generate the previous postrouting configuration file [default : `etc/nftables.d/nat-postrouting.nft.j2`].
+* **nft__nat_default_output_rules** : Set default rules for `output` chain of **nat** table.
+* **nft__nat_output_rules** : Set rules for `output` chain of **nat** table for all hosts in the Ansible inventory.
+* **nft__nat_group_output_rules** : Set rules for `output` chain of **nat** table for hosts in specific Ansible inventory group.
+* **nft__nat_host_output_rules** : Set rules for `output` chain of **nat** table for specific hosts the Ansible inventory.
+* **nft__nat_output_conf_path** : output configuration file include in the main configuration [default : `{{ nft_conf_dir_path }}/nat-output.nft`].
+* **nft__nat_output_conf_content** : Template used to generate the previous output configuration file [default : `etc/nftables.d/nat-output.nft.j2`].
 * **nft_define_default** : Set default vars available in all rules.
 * **nft_define** : You can add vars or override those defined by **nft_define_default** for all hosts.
 * **nft_define_group** : You can add vars or override those defined by **nft_define_default** and **nft_define** for a group.

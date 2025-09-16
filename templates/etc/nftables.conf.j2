@@ -56,6 +56,7 @@ table inet nat {
 	include "{{ nft_set_conf_path }}"
 	include "{{ nft__nat_prerouting_conf_path }}"
 	include "{{ nft__nat_postrouting_conf_path }}"
+	include "{{ nft__nat_output_conf_path }}"
 }
 {% endif %}
 
