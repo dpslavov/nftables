@@ -204,6 +204,18 @@
   when: (nft_enabled|bool and
          nft__nat_table_manage|bool)
 
+- name: Nat table - generate output rules file
+  ansible.builtin.template:
+    src: "{{ nft__nat_output_conf_content }}"
+    dest: "{{ nft__nat_output_conf_path }}"
+    owner: root
+    group: root
+    mode: 0600
+    backup: "{{ nft_backup_conf }}"
+  notify: ['Reload nftables service']
+  when: (nft_enabled|bool and
+         nft__nat_table_manage|bool)
+
 - name: Mangle chain - generate rules file
   ansible.builtin.template:
     src: "{{ nft_mangle_conf_content }}"
