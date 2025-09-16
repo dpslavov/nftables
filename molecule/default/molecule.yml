@@ -20,10 +20,6 @@ platforms:
     image: debian:latest
     privileged: true
 
-  - name: fedora
-    image: fedora:latest
-    privileged: true
-
 provisioner:
   name: ansible
 verifier:
